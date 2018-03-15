@@ -1,3 +1,5 @@
+package juegocartas;
+
 import java.util.*;
 
 /**
@@ -67,9 +69,9 @@ public class ElegirCarta {
 	 * ocurrieron pares o trios.
 	 */
 	public static void cincoCartas() {
+		Map<Integer, Integer> cuenta = new HashMap<Integer, Integer>();
 		// Genera nueva baraja
 		Baraja baraja = new Baraja();
-		Map<Integer, Integer> cuenta = new HashMap<Integer, Integer>();
 		List<Carta> cartas = baraja.sacarCincoCartas();
 		
 		System.out.println("Usted obtuvo: ");
@@ -77,6 +79,36 @@ public class ElegirCarta {
 		for (Carta carta : cartas) {
 			// Imprime en pantalla cada una de las cinco cartas.
 			System.out.println(carta.getValor() + " " + carta.getColor());	
+		}
+		
+		cuenta = buscaParesTrios(cartas);
+		
+		// Imprime en pantalla las apariciones(cuenta) de 2 o 3 veces, de algún valor de carta.
+				for (Map.Entry<Integer, Integer> entry : cuenta.entrySet()) {
+					switch(entry.getValue()) {
+					
+						case 2:
+							System.out.println("Par de " + entry.getKey());				
+							break;
+							
+						case 3:
+							System.out.println("Trío de " + entry.getKey());				
+							break;
+							
+						default:
+							break;
+					}
+				}
+				
+				System.out.println();
+	}
+	
+	public static Map<Integer, Integer> buscaParesTrios(List<Carta> cartas) {
+		Map<Integer, Integer> cuenta = new HashMap<Integer, Integer>();
+		
+		for (Carta carta : cartas) {
+			// Imprime en pantalla cada una de las cinco cartas.
+			//System.out.println(carta.getValor() + " " + carta.getColor());	
 			
 			// Organiza en un diccionario en un par(valor, cuenta), con la key valor de la carta y cuenta el número de apariciones.
 			int key = carta.getValor();
@@ -89,24 +121,7 @@ public class ElegirCarta {
 			
 		}
 		
-		// Imprime en pantalla las apariciones(cuenta) de 2 o 3 veces, de algún valor de carta.
-		for (Map.Entry<Integer, Integer> entry : cuenta.entrySet()) {
-			switch(entry.getValue()) {
-			
-				case 2:
-					System.out.println("Par de " + entry.getKey());				
-					break;
-					
-				case 3:
-					System.out.println("Trío de " + entry.getKey());				
-					break;
-					
-				default:
-					break;
-			}
-		}
-		
-		System.out.println();
+		return cuenta;
 	}
 
 }
