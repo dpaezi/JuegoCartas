@@ -1,4 +1,6 @@
-/*
+package juegocartas;
+
+/**
  * Clase Carta
  */
 public class Carta {

@@ -1,3 +1,5 @@
+package juegocartas;
+
 /**
  * Enum con los posibles pintas o colores de una carta.
  */
